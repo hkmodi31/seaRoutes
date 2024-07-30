@@ -33,18 +33,38 @@ def plot_sea_route(origin, destination):
     return distance
 
 # Streamlit app
+st.markdown(
+    """
+    <style>
+    .stImage {
+        background-color: white;
+        padding: 10px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+
+st.image("logo.png", use_column_width=True)
 st.title("Sea Route Plotter")
 
-st.write("Enter the coordinates of the origin and destination:")
+st.write("Enter the coordinates of the origin and destination")
 
-origin_lat = st.number_input("Origin Latitude", value=11.28399)
-origin_lon = st.number_input("Origin Longitude", value=59.13765)
-destination_lat = st.number_input("Destination Latitude", value=-79.927361)
-destination_lon = st.number_input("Destination Longitude", value=32.992062)
+origin_lat = st.number_input("Origin Latitude", value=00.00, min_value=-90.0, max_value=90.0, placeholder="Values between -90.00 to 90.00")
+origin_lon = st.number_input("Origin Longitude", value=00.00, min_value=-180.0, max_value=180.0, placeholder="Values between -180.00 to 180.00")
+
+destination_lat = st.number_input("Destination Latitude", value=00.00, min_value=-90.0, max_value=90.0, placeholder="Values between -90.00 to 90.00")
+destination_lon = st.number_input("Destination Longitude", value=00.00, min_value=-180.0, max_value=180.0, placeholder="Values between -180.00 to 180.00")
 
 origin = [origin_lat, origin_lon]
 destination = [destination_lat, destination_lon]
 
 if st.button("Plot Route"):
-    distance = plot_sea_route(origin, destination)
-    st.write(f"Distance: {distance}")
+    # if origin_lat is not None and origin_lon is not None and destination_lat is not None and destination_lon is not None:
+    if abs(origin_lat-destination_lat)>2.12 or abs(origin_lon-destination_lon)>2.12:
+        distance = plot_sea_route(origin, destination)
+        st.write(f"Distance: {distance}")
+    else:
+        st.write("Please enter valid coordinates for both origin and destination.")
