@@ -49,8 +49,8 @@ st.title("Sea Route Plotter")
 st.write("Enter the coordinates of the origin and destination")
 
 with st.form(key='route_form'):
-    origin_lat = st.number_input("Origin Latitude", min_value=-90.0, max_value=90.0, placeholder="Values between -90.00 to 90.00")
-    origin_lon = st.number_input("Origin Longitude", min_value=-180.0, max_value=180.0, placeholder="Values between -180.00 to 180.00")
+    origin_lat = st.number_input("Origin Latitude", value=0.00, min_value=-90.0, max_value=90.0, placeholder="Values between -90.00 to 90.00")
+    origin_lon = st.number_input("Origin Longitude", value=0.00, min_value=-180.0, max_value=180.0, placeholder="Values between -180.00 to 180.00")
 
     destination_lat = st.number_input("Destination Latitude", value=0.00, min_value=-90.0, max_value=90.0, placeholder="Values between -90.00 to 90.00")
     destination_lon = st.number_input("Destination Longitude", value=0.00, min_value=-180.0, max_value=180.0, placeholder="Values between -180.00 to 180.00")
